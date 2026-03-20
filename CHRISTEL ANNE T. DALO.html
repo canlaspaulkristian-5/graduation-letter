@@ -69,6 +69,10 @@ body {
   100% { transform: scale(1); }
 }
 
+.hidden {
+  display: none !important; /* !important ensures it overrides other styles */
+}
+
 button {
   width: 100%;
   padding: 12px;
@@ -297,7 +301,7 @@ function start() {
   `;
 
   document.getElementById("envelopeSection").classList.remove("hidden");
-  document.getElementById("openLetterBtn").style.display = "none";
+  document.getElementById("openBtn").style.display = "none";
 }
 
 function openEnvelope() {
