@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Glimpse of Greatness 🎓</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+
+  /* 🖼️ Background Image */
+  background: url("bg.jpg") no-repeat center center fixed;
+  background-size: cover;
+
+  /* Optional overlay for readability */
+  position: relative;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  font-family: "Monotype Corsiva", 'Great Vibes', cursive;
+  font-style: italic;
+  max-width: 420px;
+  padding: 20px;
+  text-align: center;
+  width: 50%;
+}
+
+.tap-box {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 14px;
+  background: white;
+  color: black;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.tap-box {
+  animation: pulse 1.5s infinite;
+}
+
+.tap-box {
+  background: white;
+  border: 2px solid gold;
+}
+
+.tap-box::after {
+  content: " ✨";
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.hidden {
+  display: none !important; /* !important ensures it overrides other styles */
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  margin-top: 10px;
+  font-size: 16px;
+  background: #ff0000;
+  color: white;
+  font-weight: bold;
+}
+
+/* Envelope */
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  margin-top: 20px;
+  background: lemonchiffon;
+  border-radius: 10px;
+  overflow: hidden;
+}
+#tapEnvelope{
+      display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+    color: white;
+}
+/*.flap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: gold;
+  clip-path: polygon(0 0, 100% 0, 50% 50%);
+  transform-origin: top;
+  transition: transform 1s ease;
+}*/
+
+.letter {
+  
+  height: 92%;
+  background: white;
+  color: black;
+  top: 100%;
+  left: 4%;
+  border-radius: 8px;
+  padding: 15px;
+  transition: top 1s ease;
+  overflow-y: auto;
+  font-size: 14px;
+}
+.letter-inner {
+  text-align: center;
+}
+.envelope.open .flap {
+  transform: rotateX(180deg);
+}
+
+.envelope.open .letter {
+  top: 4%;
+}
+
+/* Base animation */
+.line {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+/* Staggered delays (longer = more dramatic) */
+.line:nth-child(1)  { animation-delay: 0.5s; }
+.line:nth-child(2)  { animation-delay: 1.3s; }
+.line:nth-child(3)  { animation-delay: 2.1s; }
+.line:nth-child(4)  { animation-delay: 2.9s; }
+.line:nth-child(5)  { animation-delay: 3.7s; }
+.line:nth-child(6)  { animation-delay: 4.5s; }
+.line:nth-child(7)  { animation-delay: 5.3s; }
+.line:nth-child(8)  { animation-delay: 6.1s; }
+.line:nth-child(9)  { animation-delay: 6.9s; }
+.line:nth-child(10) { animation-delay: 7.7s; }
+.line:nth-child(11) { animation-delay: 8.5s; }
+.line:nth-child(12) { animation-delay: 9.3s; }
+.line:nth-child(13) { animation-delay: 10.1s; }
+.line:nth-child(14) { animation-delay: 10.9s; }
+.line:nth-child(15) { animation-delay: 11.7s; }
+.line:nth-child(16) { animation-delay: 12.5s; }
+
+/* Animation keyframe */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.letter-inner {
+  text-align: justify;
+}
+
+.hidden {
+  display: none;
+}
+
+/* 🎓 Cap Animation */
+.cap {
+  position: absolute;
+  font-size: 30px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-50px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+
+#emailBtn {
+  margin-top: 15px;
+  background: #25D366;
+  color: white;
+  font-weight: bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2> Mary Grace & Jereco V. Olarte </h2>
+  <button onclick="start()">Open Your Letter</button>
+
+  <div id="envelopeSection" class="hidden">
+    <div class="envelope" onclick="openEnvelope()">
+      <!-- <div class="flap"></div> -->
+      <div class="letter" id="letterContent"></div>
+    </div>
+    <p id="tapText" class="tap-box">
+    Tap the envelope ✨</p>
+
+    <button id="emailBtn" class="hidden" onclick="sendEmail()">
+  📩 Send Your Response
+</button>
+  </div>
+</div>
+
+<audio id="bgMusic" src="A million dreams.mp3"></audio>
+
+<script>
+let opened = false;
+
+// ✏️ EDIT THESE
+const graduateName = "Jaycee Louise O. Olarte";
+
+
+// ✏️ EDIT THIS EMAIL
+const recipientEmail = "darlenekayeloquias@gmail.com";
+
+function sendEmail() {
+  const subject = "My Response 🎓";
+
+  const body = `I ${graduateName} acknowledge your message and is delighted to attend. 🎉`;
+
+  const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  window.location.href = mailtoLink;
+}
+
+function start() {
+
+  document.getElementById("tapText").style.display = "none";
+  document.querySelector(".envelope").classList.add("open");
+  document.getElementById("bgMusic").play();
+
+  // Confetti
+  confetti({
+    particleCount: 200,
+    spread: 100,
+    origin: { y: 0.6 }
+  });
+
+  // 🎓 Cap toss
+  for (let i = 0; i < 20; i++) {
+    createCap();
+  }
+
+  
+  document.getElementById("emailBtn").classList.remove("hidden");
+
+  document.getElementById("letterContent").innerHTML = `
+    <div class="letter-inner">
+
+      <p class="line">Magandang araw po,</p>
+
+      <p class="line">
+        Malugod po naming binabati ang inyong anak na si <b>Jaycee Louise O. Olarte</b>
+        sa kanyang matagumpay na pagkakasama sa listahan ng mga mag-aaral sa
+      </p>
+
+      <p class="line">
+        <b>Academic Excellence Awardees – With Honors</b> para sa Taong Panuruan 2025-2026.
+      </p>
+
+      <p class="line">
+        Ang pagkilalang ito ay patunay ng kanyang sipag, tiyaga, at dedikasyon sa pag-aaral.
+      </p>
+
+      <p class="line">
+        Tunay na kayo po ay may malaking bahagi sa tagumpay na ito bilang kanyang gabay at inspirasyon.
+      </p>
+
+      <p class="line">
+        Kaugnay nito, kayo po ay aming inaanyayahan na dumalo sa <b>Deliberation of Honors</b> na gaganapin sa <b>Marso 23, Lunes, ika-10 ng umaga,sa ika-apat na palapag (4th floor)</b>, silid ni Sir Paquita.
+      </p>
+
+      <p class="line">
+        Layunin po ng gawaing ito na talakayin at pagtibayin ang listahan ng mga mag-aaral na pararangalan.
+      </p>
+
+      <p class="line">
+        Inaanyayahan po namin kayong makiisa at maging bahagi ng prosesong ito upang higit pang mapagtibay ang pagkilala sa tagumpay ng inyong anak.
+      </p>
+
+      <p class="line">
+        Muli, taos-puso po namin kayong binabati at inaasahan ng paaralan ang inyong mahalagang presensya.
+      </p>
+
+      <p class="line">Maraming salamat po.</p>
+
+      <p class="line"><br>Lubos na gumagalang,</p>
+
+      <p class="line"><b>Agustin Abadilla ES</b></p>
+
+      <p class="line">Mga Guro sa Ikaanim na Baitang
+
+    </div>
+  `;
+
+  document.getElementById("envelopeSection").classList.remove("hidden");
+}
+
+// function openEnvelope() {
+//   if (opened) return;
+//   opened = true;
+//   document.getElementById("tapText").style.display = "none";
+//   document.querySelector(".envelope").classList.add("open");
+//   document.getElementById("bgMusic").play();
+
+//   // Confetti
+//   confetti({
+//     particleCount: 200,
+//     spread: 100,
+//     origin: { y: 0.6 }
+//   });
+
+//   // 🎓 Cap toss
+//   for (let i = 0; i < 20; i++) {
+//     createCap();
+//   }
+
+  
+//   document.getElementById("emailBtn").classList.remove("hidden");
+
+// }
+
+function createCap() {
+  const cap = document.createElement("div");
+  cap.classList.add("cap");
+  cap.innerHTML = "🎓";
+
+  cap.style.left = Math.random() * 100 + "vw";
+  cap.style.animationDuration = (Math.random() * 2 + 2) + "s";
+
+  document.body.appendChild(cap);
+
+  setTimeout(() => cap.remove(), 4000);
+}
+
+
+</script>
+
+</body>
+</html>
